@@ -11,13 +11,13 @@
 struct CarMover
 {
 	CarMover(float vx, float vy)
-	: velocity(vx, vy)
+	: force(vx, vy)
 	{
 	}
 
 	void operator() (Car& car, sf::Time) const
 	{
-		car.accelerate(velocity);
+		car.applyForce(force);
 	}
 
 	sf::Vector2f velocity;

@@ -23,20 +23,7 @@ World::World(sf::RenderWindow& window)
 
 void World::update(sf::Time dt)
 {
-	// Scroll the world
-	mWorldView.move(0.f, mScrollSpeed * dt.asSeconds());	
-
-	// Move the player sidewards (plane scouts follow the main aircraft)
-	sf::Vector2f position = mPlayerCar->getPosition();
-	sf::Vector2f velocity = mPlayerCar->getVelocity();
-
-	// If player touches borders, flip its X velocity
-	if (position.x <= mWorldBounds.left + 150.f
-	 || position.x >= mWorldBounds.left + mWorldBounds.width - 150.f)
-	{
-		velocity.x = -velocity.x;
-		mPlayerCar->setVelocity(velocity);
-	}
+	//moving here
 
 	// Apply movements
 	mSceneGraph.update(dt);
@@ -50,8 +37,16 @@ void World::draw()
 
 void World::loadTextures()
 {
-	mTextures.load(Textures::XRG, "Resources/car/rb4car.bmp");
+	mTextures.load(Textures::BF1, "Resources/car/bf1car.bmp");
+	mTextures.load(Textures::FOX, "Resources/car/foxcar.bmp");
+	mTextures.load(Textures::FXO, "Resources/car/fxocar.bmp");
+	mTextures.load(Textures::FZR, "Resources/car/fzrcar.bmp");
+	mTextures.load(Textures::MRT, "Resources/car/mrtcar.bmp");
+	mTextures.load(Textures::RB4, "Resources/car/rb4car.bmp");
+	mTextures.load(Textures::XFR, "Resources/car/xfrcar.bmp");
 	mTextures.load(Textures::XRT, "Resources/car/xrtcar.bmp");
+	mTextures.load(Textures::Tyre, "Resources/tire.bmp");
+	mTextures.load(Textures::G25, "Resources/g25small.bmp");
 	mTextures.load(Textures::Carpark, "Resources/carpark2.bmp");
 }
 
@@ -80,15 +75,24 @@ void World::buildScene()
 	std::unique_ptr<Car> leader(new Car(Car::XRT, mTextures));
 	mPlayerCar = leader.get();
 	mPlayerCar->setPosition(mSpawnPosition);
-	mPlayerCar->setVelocity(40.f, mScrollSpeed);
 	mSceneLayers[AboveGround]->attachChild(std::move(leader));
+}
 
-	// Add two escorting aircrafts, placed relatively to the main plane
-	std::unique_ptr<Car> leftEscort(new  Car(Car::XRG, mTextures));
-	leftEscort->setPosition(-80.f, 50.f);
-	mPlayerCar->attachChild(std::move(leftEscort));
+void World::adaptPlayerPosition()
+{
+	// Keep player's position inside the screen bounds, at least borderDistance units from the border
+	sf::FloatRect viewBounds(mWorldView.getCenter() - mWorldView.getSize() / 2.f, mWorldView.getSize());
+	const float borderDistance = 40.f;
 
-	std::unique_ptr<Car> rightEscort(new Car(Car::XRT, mTextures));
-	rightEscort->setPosition(80.f, 50.f); 
-	mPlayerCar->attachChild(std::move(rightEscort));
+	sf::Vector2f position = mPlayerCar->getPosition();
+	position.x = std::max(position.x, viewBounds.left + borderDistance);
+	position.x = std::min(position.x, viewBounds.left + viewBounds.width - borderDistance);
+	position.y = std::max(position.y, viewBounds.top + borderDistance);
+	position.y = std::min(position.y, viewBounds.top + viewBounds.height - borderDistance);
+	mPlayerCar->setPosition(position);
+}
+
+void World::adaptPlayerVelocity()
+{
+	sf::Vector2f velocity = mPlayerCar->getVelocity();
 }

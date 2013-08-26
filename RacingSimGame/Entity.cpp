@@ -1,34 +1,38 @@
 #include "Entity.hpp"
 
 
-void Entity::setVelocity(sf::Vector2f velocity)
+void Entity::applyForce(sf::Vector2f force)
 {
-	mVelocity = velocity;
+	mForce = force;
 }
 
-void Entity::setVelocity(float vx, float vy)
+void Entity::applyForce(float vx, float vy)
 {
-	mVelocity.x = vx;
-	mVelocity.y = vy;
+	mForce.x = vx;
+	mForce.y = vy;
+}
+
+void Entity::applyTorque(float torque)
+{
+
 }
 
 sf::Vector2f Entity::getVelocity() const
 {
-	return mVelocity;
+	return mForce/mMass;
 }
 
-void Entity::accelerate(sf::Vector2f velocity)
+void Entity::setMass(float mass)
 {
-	mVelocity += velocity;
+	mMass = mass;
 }
 
-void Entity::accelerate(float vx, float vy)
+float Entity::getMass() const
 {
-	mVelocity.x += vx;
-	mVelocity.y += vy;
+	return mMass;
 }
 
 void Entity::updateCurrent(sf::Time dt)
 {	
-	move(mVelocity * dt.asSeconds());
+	move(getVelocity() * dt.asSeconds());
 }
