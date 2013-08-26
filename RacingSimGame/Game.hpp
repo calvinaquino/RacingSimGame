@@ -1,7 +1,13 @@
-#ifndef MCHAN_GAME_HPP
-#define MCHAN_GAME_HPP
+#ifndef RACE_GAME_HPP
+#define RACE_GAME_HPP
 
-#include <SFML/Graphics.hpp>
+#include "World.hpp"
+
+#include <SFML/System/Time.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 
 class Game : private sf::NonCopyable
@@ -14,7 +20,8 @@ private:
 		void					processEvents();
 		void					update(sf::Time deltaTime);
 		void					render();
-
+		
+		void					updateStatistics(sf::Time elapsedTime);	
 		void					handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
 
 private:
@@ -24,14 +31,13 @@ private:
 		static const int		ScreenResolutionY;
 
 		sf::RenderWindow		mWindow;
-		sf::Texture				mTexture;
-		sf::Sprite				mPlayer;
-
-		bool					mIsAccelerating;
-		bool					mIsBraking;
-		bool					mIsTurningLeft;
-		bool					mIsTurningRight;
+		World					mWorld;
+		
+	  	sf::Font				mFont;
+		sf::Text				mStatisticsText;
+		sf::Time				mStatisticsUpdateTime;
+		std::size_t				mStatisticsNumFrames;
 };
 
 #endif 
-// MCHAN_GAME_HPP
+// RACE_GAME_HPP

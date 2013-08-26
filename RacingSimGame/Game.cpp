@@ -1,26 +1,23 @@
 #include "Game.hpp"
+#include "StringHelpers.hpp"
 
-const float Game::PlayerSpeed = 100.f;
+#include <SFML/Window/Event.hpp>
+
+
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
-const int Game::ScreenResolutionX = 800;
-const int Game::ScreenResolutionY = 600;
 
 Game::Game()
-	: mWindow(sf::VideoMode(ScreenResolutionX, ScreenResolutionY), "Racing Sim Game", sf::Style::Close)
-, mPlayer()
-, mTexture()
-, mIsAccelerating(false)
-, mIsBraking(false)
-, mIsTurningLeft(false)
-, mIsTurningRight(false)
+: mWindow(sf::VideoMode(640, 480), "Circuit", sf::Style::Close)
+, mFont()
+, mStatisticsText()
+, mStatisticsUpdateTime()
+, mStatisticsNumFrames(0)
+, mWorld(mWindow)
 {
-	if (!mTexture.loadFromFile("Resources/car/xrtcar.bmp"))
-	{
-		//handle error
-		mWindow.close();
-	}
-	mPlayer.setTexture(mTexture);
-	mPlayer.setPosition(ScreenResolutionX/2.f, ScreenResolutionY/2.f);
+	mFont.loadFromFile("Media/Sansation.ttf");
+	mStatisticsText.setFont(mFont);
+	mStatisticsText.setPosition(5.f, 5.f);
+	mStatisticsText.setCharacterSize(10);
 }
 
 void Game::run()
@@ -29,14 +26,18 @@ void Game::run()
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	while (mWindow.isOpen())
 	{
-		processEvents();
-		timeSinceLastUpdate += clock.restart();
+		sf::Time elapsedTime = clock.restart();
+		timeSinceLastUpdate += elapsedTime;
 		while (timeSinceLastUpdate > TimePerFrame)
 		{
 			timeSinceLastUpdate -= TimePerFrame;
+
 			processEvents();
 			update(TimePerFrame);
+
 		}
+
+		updateStatistics(elapsedTime);
 		render();
 	}
 }
@@ -48,49 +49,52 @@ void Game::processEvents()
 	{
 		switch (event.type)
 		{
-		case sf::Event::KeyPressed:
-			handlePlayerInput(event.key.code, true);
-			break;
-		case sf::Event::KeyReleased:
-			handlePlayerInput(event.key.code, false);
-			break;
-		case sf::Event::Closed:
-			mWindow.close();
-			break;
+			case sf::Event::KeyPressed:
+				handlePlayerInput(event.key.code, true);
+				break;
+
+			case sf::Event::KeyReleased:
+				handlePlayerInput(event.key.code, false);
+				break;
+
+			case sf::Event::Closed:
+				mWindow.close();
+				break;
 		}
 	}
 }
 
-void Game::update(sf::Time deltaTime)
+void Game::update(sf::Time elapsedTime)
 {
-	sf::Vector2f movement(0.f, 0.f);
-	if (mIsAccelerating)
-		movement.y -= PlayerSpeed;
-	if (mIsAccelerating)
-		movement.y += PlayerSpeed;
-	if (mIsTurningLeft)
-		movement.x -= PlayerSpeed;
-	if (mIsTurningRight)
-		movement.x += PlayerSpeed;
-
-	mPlayer.move(movement * deltaTime.asSeconds());
-}
-
-void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
-{
-	if (key == sf::Keyboard::W)
-		mIsAccelerating = isPressed;
-	if (key == sf::Keyboard::S)
-		mIsBraking = isPressed;
-	if (key == sf::Keyboard::A)
-		mIsTurningLeft = isPressed;
-	if (key == sf::Keyboard::D)
-		mIsTurningRight = isPressed;
+	mWorld.update(elapsedTime);
 }
 
 void Game::render()
 {
 	mWindow.clear();	
-	mWindow.draw(mPlayer);
+	mWorld.draw();
+
+	mWindow.setView(mWindow.getDefaultView());
+	mWindow.draw(mStatisticsText);
 	mWindow.display();
+}
+
+void Game::updateStatistics(sf::Time elapsedTime)
+{
+	mStatisticsUpdateTime += elapsedTime;
+	mStatisticsNumFrames += 1;
+
+	if (mStatisticsUpdateTime >= sf::seconds(1.0f))
+	{
+		mStatisticsText.setString(
+			"Frames / Second = " + toString(mStatisticsNumFrames) + "\n" +
+			"Time / Update = " + toString(mStatisticsUpdateTime.asMicroseconds() / mStatisticsNumFrames) + "us");
+
+		mStatisticsUpdateTime -= sf::seconds(1.0f);
+		mStatisticsNumFrames = 0;
+	}
+}
+
+void Game::handlePlayerInput(sf::Keyboard::Key, bool)
+{
 }

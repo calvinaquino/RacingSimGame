@@ -24,45 +24,95 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Car.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StringHelpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Car.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Foreach.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceHolder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceIdentifiers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneNode.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteNode.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="World.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Debug\Resources\car\mrtcar.bmp">
-      <Filter>Resource Files\Cars</Filter>
-    </Image>
-    <Image Include="..\Debug\Resources\car\rb4car.bmp">
-      <Filter>Resource Files\Cars</Filter>
-    </Image>
-    <Image Include="..\Debug\Resources\car\xfrcar.bmp">
-      <Filter>Resource Files\Cars</Filter>
-    </Image>
-    <Image Include="..\Debug\Resources\car\xrtcar.bmp">
-      <Filter>Resource Files\Cars</Filter>
-    </Image>
-    <Image Include="..\Debug\Resources\car\bf1car.bmp">
-      <Filter>Resource Files\Cars</Filter>
-    </Image>
-    <Image Include="..\Debug\Resources\car\foxcar.bmp">
-      <Filter>Resource Files\Cars</Filter>
-    </Image>
-    <Image Include="..\Debug\Resources\car\fxocar.bmp">
-      <Filter>Resource Files\Cars</Filter>
-    </Image>
-    <Image Include="..\Debug\Resources\car\fzrcar.bmp">
-      <Filter>Resource Files\Cars</Filter>
-    </Image>
-    <Image Include="..\Debug\Resources\carpark2.bmp">
+    <None Include="StringHelpers.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="ResourceHolder.inl">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\carpark2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Debug\Resources\g25small.bmp">
+    <Image Include="Resources\g25small.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\Debug\Resources\tire.bmp">
+    <Image Include="Resources\tire.bmp">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\car\bf1car.bmp">
+      <Filter>Resource Files\Cars</Filter>
+    </Image>
+    <Image Include="Resources\car\foxcar.bmp">
+      <Filter>Resource Files\Cars</Filter>
+    </Image>
+    <Image Include="Resources\car\fxocar.bmp">
+      <Filter>Resource Files\Cars</Filter>
+    </Image>
+    <Image Include="Resources\car\fzrcar.bmp">
+      <Filter>Resource Files\Cars</Filter>
+    </Image>
+    <Image Include="Resources\car\mrtcar.bmp">
+      <Filter>Resource Files\Cars</Filter>
+    </Image>
+    <Image Include="Resources\car\rb4car.bmp">
+      <Filter>Resource Files\Cars</Filter>
+    </Image>
+    <Image Include="Resources\car\xfrcar.bmp">
+      <Filter>Resource Files\Cars</Filter>
+    </Image>
+    <Image Include="Resources\car\xrtcar.bmp">
+      <Filter>Resource Files\Cars</Filter>
     </Image>
   </ItemGroup>
 </Project>

@@ -58,7 +58,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\SFML-2.1\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,26 +79,42 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SceneNode.cpp" />
+    <ClCompile Include="SpriteNode.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Car.hpp" />
+    <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="Foreach.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="ResourceHolder.hpp" />
+    <ClInclude Include="ResourceIdentifiers.hpp" />
+    <ClInclude Include="SceneNode.hpp" />
+    <ClInclude Include="SpriteNode.hpp" />
+    <ClInclude Include="StringHelpers.hpp" />
+    <ClInclude Include="World.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Debug\Resources\carpark2.bmp" />
-    <Image Include="..\Debug\Resources\car\bf1car.bmp" />
-    <Image Include="..\Debug\Resources\car\foxcar.bmp" />
-    <Image Include="..\Debug\Resources\car\fxocar.bmp" />
-    <Image Include="..\Debug\Resources\car\fzrcar.bmp">
-      <DeploymentContent>true</DeploymentContent>
-    </Image>
-    <Image Include="..\Debug\Resources\car\mrtcar.bmp" />
-    <Image Include="..\Debug\Resources\car\rb4car.bmp" />
-    <Image Include="..\Debug\Resources\car\xfrcar.bmp" />
-    <Image Include="..\Debug\Resources\car\xrtcar.bmp" />
-    <Image Include="..\Debug\Resources\g25small.bmp" />
-    <Image Include="..\Debug\Resources\tire.bmp" />
+    <None Include="ResourceHolder.inl" />
+    <None Include="StringHelpers.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\carpark2.bmp" />
+    <Image Include="Resources\car\bf1car.bmp" />
+    <Image Include="Resources\car\foxcar.bmp" />
+    <Image Include="Resources\car\fxocar.bmp" />
+    <Image Include="Resources\car\fzrcar.bmp" />
+    <Image Include="Resources\car\mrtcar.bmp" />
+    <Image Include="Resources\car\rb4car.bmp" />
+    <Image Include="Resources\car\xfrcar.bmp" />
+    <Image Include="Resources\car\xrtcar.bmp" />
+    <Image Include="Resources\g25small.bmp" />
+    <Image Include="Resources\tire.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
