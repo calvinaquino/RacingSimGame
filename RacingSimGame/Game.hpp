@@ -2,6 +2,7 @@
 #define RACE_GAME_HPP
 
 #include "World.hpp"
+#include "Player.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Keyboard.hpp>
@@ -32,6 +33,7 @@ private:
 
 		sf::RenderWindow		mWindow;
 		World					mWorld;
+		Player					mPlayer;
 		
 	  	sf::Font				mFont;
 		sf::Text				mStatisticsText;

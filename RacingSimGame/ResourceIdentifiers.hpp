@@ -13,7 +13,15 @@ namespace Textures
 	enum ID
 	{
 		XRT,
-		XRG,
+		XFR,
+		RB4,
+		MRT,
+		FZR,
+		FXO,
+		FOX,
+		BF1,
+		G25,
+		Tyre,
 		Carpark,
 	};
 }

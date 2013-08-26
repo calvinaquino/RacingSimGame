@@ -13,7 +13,13 @@ class Car : public Entity
 		enum Type
 		{
 			XRT,
-			XRG,
+			XFR,
+			RB4,
+			MRT,
+			FZR,
+			FXO,
+			FOX,
+			BF1
 		};
 
 
@@ -21,6 +27,7 @@ class Car : public Entity
 							Car(Type type, const TextureHolder& textures);
 
 		virtual void		drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+		virtual unsigned int	getCategory() const;
 
 
 	private:

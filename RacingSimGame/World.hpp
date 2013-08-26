@@ -6,6 +6,8 @@
 #include "SceneNode.hpp"
 #include "SpriteNode.hpp"
 #include "Car.hpp"
+#include "CommandQueue.hpp"
+#include "Command.hpp"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -31,6 +33,8 @@ class World : private sf::NonCopyable
 	private:
 		void								loadTextures();
 		void								buildScene();
+		void								adaptPlayerPosition();
+		void								adaptPlayerVelocity();
 
 
 	private:
