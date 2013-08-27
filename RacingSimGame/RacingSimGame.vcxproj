@@ -80,35 +80,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
-    <ClCompile Include="Command.cpp" />
-    <ClCompile Include="CommandQueue.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SceneNode.cpp" />
-    <ClCompile Include="SpriteNode.cpp" />
+    <ClCompile Include="Tyre.cpp" />
     <ClCompile Include="World.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Car.hpp" />
-    <ClInclude Include="Category.hpp" />
-    <ClInclude Include="Command.hpp" />
-    <ClInclude Include="CommandQueue.hpp" />
-    <ClInclude Include="Entity.hpp" />
-    <ClInclude Include="Foreach.hpp" />
-    <ClInclude Include="Game.hpp" />
-    <ClInclude Include="Player.hpp" />
-    <ClInclude Include="ResourceHolder.hpp" />
-    <ClInclude Include="ResourceIdentifiers.hpp" />
-    <ClInclude Include="SceneNode.hpp" />
-    <ClInclude Include="SpriteNode.hpp" />
-    <ClInclude Include="StringHelpers.hpp" />
-    <ClInclude Include="World.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ResourceHolder.inl" />
-    <None Include="StringHelpers.inl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\carpark2.bmp" />
@@ -122,6 +100,15 @@
     <Image Include="Resources\car\xrtcar.bmp" />
     <Image Include="Resources\g25small.bmp" />
     <Image Include="Resources\tire.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Car.hpp" />
+    <ClInclude Include="Engine.hpp" />
+    <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Player.hpp" />
+    <ClInclude Include="Tyre.hpp" />
+    <ClInclude Include="World.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
